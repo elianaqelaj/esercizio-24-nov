@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Ricevuta assistenza</title>
+<style>
+		
+
+
+
+	.casella {
+	margin-left: 5px;
+	margin-top: 10px;
+	margin-right: 15px;
+	margin-bottom: 10px;
+	font-family: Verdana;
+	border: solid black;
+}
+
+#submit {
+	float: right;
+	margin-top: 11px;
+	
+}
+
+
+	table {
+		width: 600px;
+		border: 2px solid orange;
+		background-color: lightgrey;
+		margin-left: auto;
+		margin-right: auto;
+	}
+	
+	th {
+		width: 100%;
+		text-align: center;
+		background-color: lightslategrey;
+	}
+
+	td{
+		border: 1px solid black;
+		padding: 3px;
+	}
+	
+	input{
+		border: black;
+	}
+
+	.sx { 
+		width: 50%;
+	}
+
+	.dx { 
+		width: 50%;
+		
+	}
+	
+	#pulsante{
+		display: block;
+		margin-left: auto;
+		margin-right: auto;
+		background-color: orange;
+		
+	}
+
+	textarea {
+		resize: none; 
+	}
+</style>
+</head>
+<body>
+	
+	<form id="modulo" name="modulo" method="post"> <!-- manca action perchè i contenuti verranno usati nella pagina stessa -->
+		<fieldset>
+			<legend>DATI DEL CLIENTE</legend>
+			Nome <input name="nome" type="text" class="casella" tabindex="1" size="15" maxlength="20" />
+			Cognome <input name="cognome" type="text" class="casella" tabindex="2" size="15" maxlength="20" />
+			Codice Fiscale <input name="cf" type="text" class="casella" tabindex="3" size="13" maxlength="16"/>
+			Gestore telefonico <input name="gesTel" type="text" class="casella" tabindex="4" size="13" />
+			Numero telefono del dispositivo <input name="numeroTel" type="tel" class="casella" tabindex="5" size="15" maxlength="15" id="numeroTel" /><br />
+			Marca del dispositivo <input name="marcaTel" type="text" class="casella" tabindex="6" size="13" />
+			Modello dispositivo<input name="modello" type="text" class="casella" tabindex="7" size="15" maxlength="40" />
+			Recapito telefonico (se diverso dal numero del dispositivo in riparazione) <input name="recapito" id="recapitoTel" type="tel" class="casella" tabindex="8" size="15" maxlength="15" /> <br  /> <br />
+			<input name="button" type="button" id="submit" value="invia" />
+			<input type="reset" name="resetButton" id="reset" value="cancella"  />
+		</fieldset><br />
+		
+	</form>
+	<form id="ricevuta"  method="post">
+	<table>
+		<thead>
+			<tr>
+			<th colspan="2"> NewPhone - Via Roma 18, Milano <br /> Ricevuta di consegna</th>
+			</tr>
+		</thead>
+			<tbody>
+				<tr>
+				<td class="sx">Nome</td>
+				<td class="dx"><input name="uno" type="text" class="risultato" readonly placeholder="nome" /> </td>
+				</tr>
+				<tr> 
+					<td class="sx">Cognome</td>
+					<td class="dx"><input name="due" type="text" class="risultato" readonly placeholder="cognome" /> </td>
+				</tr>
+				<tr> 
+					<td class="sx">Codice Fiscale</td>
+				 <td class="dx"><input name="tre" type="text" class="risultato" readonly placeholder="codice fiscale" /> </td>
+				</tr>
+				<tr> 
+					<td class="sx">Gestore Telefonico</td>
+					<td class="dx"><input name="quattro" type="text" class="risultato" readonly placeholder="gestore telefonico" />  </td>
+				</tr>
+				<tr> 
+					<td class="sx">Numero di telefono dispositivo</td>
+					<td class="dx"><input name="cinque" type="text" class="risultato" readonly placeholder="numero di telefono" /> </td>
+				</tr>
+				<tr> 
+					<td class="sx">Marca dispositivo</td>
+					<td class="dx"><input name="sei" type="text" class="risultato" readonly placeholder="marca dispositivo" />  </td>
+				</tr>
+				<tr> 
+					<td class="sx">Modello dispositivo</td>
+					<td class="dx"><input name="sette" type="text" class="risultato" readonly placeholder="modello dispositivo" />  </td>
+				</tr>
+				<tr> 
+					<td class="sx">Recapito di contatto (se diverso dal numero del dispositivo in riparazione)</td>
+					<td class="dx"><input name="otto" type="text" class="risultato" readonly placeholder="recapito di contatto" />  </td>
+				</tr>
+			
+			</tbody>
+	</table><br />
+			
+			<input id="pulsante" type="reset" name="Torna al form" value="Torna al form"  />
+		
+	</form>
+	
+	<script>
+	 
+	    document.getElementById("submit").addEventListener("click", function() {
+		
+			document.ricevuta.uno.value = document.modulo.nome.value; 
+			document.ricevuta.due.value = document.modulo.cognome.value; 
+			document.ricevuta.tre.value = document.modulo.cf.value; 
+			document.ricevuta.quattro.value = document.modulo.gesTel.value; 
+			document.ricevuta.cinque.value = document.modulo.numeroTel.value;
+			document.ricevuta.sei.value = document.modulo.marcaTel.value;
+			document.ricevuta.sette.value = document.modulo.modello.value;
+			document.ricevuta.otto.value = document.modulo.recapito.value;
+																								
+		})
+		
+			
+			const numeroTelefono = document.getElementById("numeroTel");
+			let recapito = document.getElementById("recapitoTel");
+					
+			if (recapito == "" ){
+				recapito = numeroTelefono; 
+			} 
+
+		
+		
+	</script>
+</body>
+</html>
