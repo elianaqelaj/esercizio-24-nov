@@ -4,10 +4,31 @@
 <meta charset="UTF-8">
 <title>Ricevuta assistenza</title>
 <style>
+	
+body {
+	background-color: lightblue;
+}
+
+#modulo{
+	background-color: #5999CE;
+	font-family: sans-serif;
+	font-weight: bold;
+}
+
+legend{
+	font-weight: bold;
+	color: orange;
+	
+}
 		
+.hidden {
+	display: none;
+	
+}
 
-
-
+#reset{
+	text-align: center;
+}
 	.casella {
 	margin-left: 5px;
 	margin-top: 10px;
@@ -24,10 +45,11 @@
 }
 
 
+
 	table {
 		width: 600px;
 		border: 2px solid orange;
-		background-color: lightgrey;
+		background-color: lightsteelblue;
 		margin-left: auto;
 		margin-right: auto;
 	}
@@ -35,8 +57,8 @@
 	th {
 		width: 100%;
 		text-align: center;
-		background-color: lightslategrey;
-	}
+		background-color: steelblue;
+	}	
 
 	td{
 		border: 1px solid black;
@@ -56,13 +78,7 @@
 		
 	}
 	
-	#pulsante{
-		display: block;
-		margin-left: auto;
-		margin-right: auto;
-		background-color: orange;
-		
-	}
+	
 
 	textarea {
 		resize: none; 
@@ -74,90 +90,175 @@
 	<form id="modulo" name="modulo" method="post"> <!-- manca action perchè i contenuti verranno usati nella pagina stessa -->
 		<fieldset>
 			<legend>DATI DEL CLIENTE</legend>
-			Nome <input name="nome" type="text" class="casella" tabindex="1" size="15" maxlength="20" />
-			Cognome <input name="cognome" type="text" class="casella" tabindex="2" size="15" maxlength="20" />
-			Codice Fiscale <input name="cf" type="text" class="casella" tabindex="3" size="13" maxlength="16"/>
-			Gestore telefonico <input name="gesTel" type="text" class="casella" tabindex="4" size="13" />
-			Numero telefono del dispositivo <input name="numeroTel" type="tel" class="casella" tabindex="5" size="15" maxlength="15" id="numeroTel" /><br />
-			Marca del dispositivo <input name="marcaTel" type="text" class="casella" tabindex="6" size="13" />
-			Modello dispositivo<input name="modello" type="text" class="casella" tabindex="7" size="15" maxlength="40" />
+			
+			Nome <input name="nome" id="nome" type="text" class="casella" tabindex="1" size="15" maxlength="20" />
+			
+			Cognome <input name="cognome" id="cognome" type="text" class="casella" tabindex="2" size="15" maxlength="20" />
+			
+			Codice Fiscale <input name="cf" id="cf" type="text" class="casella" tabindex="3" size="13" maxlength="16"/>
+			
+			Gestore telefonico <select name="gesTel" id="gesTel" class="casella">
+				<option value="a">Vodafone</option>
+				<option value="b">Wind3</option>
+				<option value="c">TIM</option>
+				<option value="d">Iliad</option>
+				<option value="e">Fastweb</option>			
+				<option value="f">ho.mobile</option>
+				<option value="g">PosteMobile</option>	
+				<option value="h">Very Mobile</option>								
+			</select>
+			
+			Numero telefono del dispositivo <input name="numeroTel" id="numeroTel" type="tel" class="casella" tabindex="5" size="15" maxlength="15" /><br />
+			
+			Marca del dispositivo <select name="marcaTel" id="marcaTel" class="casella">
+				<option value="1">Samsung</option>
+				<option value="2">iPhone</option>
+				<option value="3">Xiaomi</option>
+				<option value="4">Google</option>
+				<option value="5">Oppo</option>
+				<option value="6">Nokia</option>
+				<option value="7">Huawei</option>
+				<option value="8">Sony</option>
+				<option value="9">Realme</option>				
+			</select>
+			
+			Modello dispositivo <input name="modello" id="modello" type="text" class="casella" tabindex="7" size="15" maxlength="40" />
+			
 			Recapito telefonico (se diverso dal numero del dispositivo in riparazione) <input name="recapito" id="recapitoTel" type="tel" class="casella" tabindex="8" size="15" maxlength="15" /> <br  /> <br />
-			<input name="button" type="button" id="submit" value="invia" />
-			<input type="reset" name="resetButton" id="reset" value="cancella"  />
-		</fieldset><br />
-		
+			
+			<input name="button" type="submit" id="submit" value="invia" />
+		</fieldset>
+		<br />
 	</form>
-	<form id="ricevuta"  method="post">
+		
+<form name="ricevuta" id="ricevutaCliente" method="post" class="hidden">
 	<table>
 		<thead>
 			<tr>
-			<th colspan="2"> NewPhone - Via Roma 18, Milano <br /> Ricevuta di consegna</th>
+				<th colspan="2"> NewPhone - Via Roma 18, Milano <br /> Ricevuta di consegna</th>
 			</tr>
 		</thead>
-			<tbody>
-				<tr>
+		<tbody>
+			<tr>
 				<td class="sx">Nome</td>
 				<td class="dx"><input name="uno" type="text" class="risultato" readonly placeholder="nome" /> </td>
-				</tr>
-				<tr> 
-					<td class="sx">Cognome</td>
-					<td class="dx"><input name="due" type="text" class="risultato" readonly placeholder="cognome" /> </td>
-				</tr>
-				<tr> 
-					<td class="sx">Codice Fiscale</td>
-				 <td class="dx"><input name="tre" type="text" class="risultato" readonly placeholder="codice fiscale" /> </td>
-				</tr>
-				<tr> 
-					<td class="sx">Gestore Telefonico</td>
-					<td class="dx"><input name="quattro" type="text" class="risultato" readonly placeholder="gestore telefonico" />  </td>
-				</tr>
-				<tr> 
-					<td class="sx">Numero di telefono dispositivo</td>
-					<td class="dx"><input name="cinque" type="text" class="risultato" readonly placeholder="numero di telefono" /> </td>
-				</tr>
-				<tr> 
-					<td class="sx">Marca dispositivo</td>
-					<td class="dx"><input name="sei" type="text" class="risultato" readonly placeholder="marca dispositivo" />  </td>
-				</tr>
-				<tr> 
-					<td class="sx">Modello dispositivo</td>
-					<td class="dx"><input name="sette" type="text" class="risultato" readonly placeholder="modello dispositivo" />  </td>
-				</tr>
-				<tr> 
-					<td class="sx">Recapito di contatto (se diverso dal numero del dispositivo in riparazione)</td>
-					<td class="dx"><input name="otto" type="text" class="risultato" readonly placeholder="recapito di contatto" />  </td>
-				</tr>
-			
-			</tbody>
-	</table><br />
-			
-			<input id="pulsante" type="reset" name="Torna al form" value="Torna al form"  />
-		
-	</form>
+			</tr>
+			<tr> 
+				<td class="sx">Cognome</td>
+				<td class="dx"><input name="due" type="text" class="risultato" readonly placeholder="cognome" /> </td>
+			</tr>
+			<tr> 
+				<td class="sx">Codice Fiscale</td>
+				<td class="dx"><input name="tre" type="text" class="risultato" readonly placeholder="codice fiscale" /> </td>
+			</tr>
+			<tr> 
+				<td class="sx">Gestore Telefonico</td>
+				<td class="dx"><input name="quattro" type="text" class="risultato" readonly placeholder="gestore telefonico" />  </td>
+			</tr>
+			<tr> 
+				<td class="sx">Numero di telefono dispositivo</td>
+				<td class="dx"><input name="cinque" type="text" class="risultato" readonly placeholder="numero di telefono" /> </td>
+			</tr>
+			<tr> 
+				<td class="sx">Marca dispositivo</td>
+				<td class="dx"><input name="sei" type="text" class="risultato" readonly placeholder="marca dispositivo" />  </td>
+			</tr>
+			<tr> 
+				<td class="sx">Modello dispositivo</td>
+				<td class="dx"><input name="sette" type="text" class="risultato" readonly placeholder="modello dispositivo" />  </td>
+			</tr>
+			<tr> 
+				<td class="sx">Recapito di contatto (se diverso dal numero del dispositivo in riparazione)</td>
+				<td class="dx"><input name="otto" type="text" class="risultato" readonly placeholder="recapito di contatto" />  </td>
+			</tr>
+			<tr>
+				<td id="reset" colspan="2"><input id="pulsanteAnnulla" type="button" value="Torna al form" /></td>
+			</tr>
+		</tbody>
+	</table>
+	<br />
+	
+</form>
 	
 	<script>
-	 
-	    document.getElementById("submit").addEventListener("click", function() {
 		
-			document.ricevuta.uno.value = document.modulo.nome.value; 
-			document.ricevuta.due.value = document.modulo.cognome.value; 
-			document.ricevuta.tre.value = document.modulo.cf.value; 
-			document.ricevuta.quattro.value = document.modulo.gesTel.value; 
-			document.ricevuta.cinque.value = document.modulo.numeroTel.value;
-			document.ricevuta.sei.value = document.modulo.marcaTel.value;
-			document.ricevuta.sette.value = document.modulo.modello.value;
-			document.ricevuta.otto.value = document.modulo.recapito.value;
-																								
-		})
-		
-			
-			const numeroTelefono = document.getElementById("numeroTel");
-			let recapito = document.getElementById("recapitoTel");
-					
-			if (recapito == "" ){
-				recapito = numeroTelefono; 
-			} 
+		 
+		 
+		document.addEventListener("DOMContentLoaded", function () {
+		  // 1. SELEZIONE DEGLI ELEMENTI PRINCIPALI
+		  const formModulo = document.getElementById("modulo");
+		  const formRicevuta = document.getElementById("ricevutaCliente");
+		  const btnInvia = document.getElementById("submit");
+		  const btnAnnulla = document.getElementById("pulsanteAnnulla");
 
+		  // 2. GESTIONE DEL CLICK SUL PULSANTE "INVIA"
+		  if (btnInvia) {
+		    btnInvia.addEventListener("click", function (event) {
+		      // Impedisce il ricaricamento della pagina
+		      event.preventDefault();
+
+		      // Recupera gli elementi di input del modulo principale
+		      const inputNome = document.getElementById("nome");
+		      const inputCognome = document.getElementById("cognome");
+		      const inputCf = document.getElementById("cf");
+		      const selectGesTel = document.getElementById("gesTel");
+		      const inputNumeroTel = document.getElementById("numeroTel");
+		      const selectMarcaTel = document.getElementById("marcaTel");
+		      const inputModello = document.getElementById("modello");
+		      const inputRecapitoTel = document.getElementById("recapitoTel");
+
+		      // Logica per il recapito alternativo (se vuoto, copia il numero principale)
+		      if (inputRecapitoTel && inputRecapitoTel.value.trim() === "") {
+		        inputRecapitoTel.value = inputNumeroTel ? inputNumeroTel.value : "";
+		      }
+
+		      // Estrae i valori testuali per la ricevuta
+		      const nome = inputNome ? inputNome.value : "";
+		      const cognome = inputCognome ? inputCognome.value : "";
+		      const cf = inputCf ? inputCf.value : "";
+		      const numeroTel = inputNumeroTel ? inputNumeroTel.value : "";
+		      const modello = inputModello ? inputModello.value : "";
+		      const recapito = inputRecapitoTel ? inputRecapitoTel.value : "";
+
+		      // Recupera il testo visibile delle select (es. "Vodafone", "Samsung")
+		      const gesTel = selectGesTel && selectGesTel.selectedIndex !== -1 
+		        ? selectGesTel.options[selectGesTel.selectedIndex].text 
+		        : "";
+		        
+		      const marcaTel = selectMarcaTel && selectMarcaTel.selectedIndex !== -1 
+		        ? selectMarcaTel.options[selectMarcaTel.selectedIndex].text 
+		        : "";
+
+		      // Scrive i dati nei campi readonly della ricevuta
+		      if (formRicevuta) {
+		        if (formRicevuta.elements["uno"]) formRicevuta.elements["uno"].value = nome;
+		        if (formRicevuta.elements["due"]) formRicevuta.elements["due"].value = cognome;
+		        if (formRicevuta.elements["tre"]) formRicevuta.elements["tre"].value = cf;
+		        if (formRicevuta.elements["quattro"]) formRicevuta.elements["quattro"].value = gesTel;
+		        if (formRicevuta.elements["cinque"]) formRicevuta.elements["cinque"].value = numeroTel;
+		        if (formRicevuta.elements["sei"]) formRicevuta.elements["sei"].value = marcaTel;
+		        if (formRicevuta.elements["sette"]) formRicevuta.elements["sette"].value = modello;
+		        if (formRicevuta.elements["otto"]) formRicevuta.elements["otto"].value = recapito;
+		      }
+
+		      // CAMBIO VISIBILITÀ: Nasconde il modulo e mostra la ricevuta
+		      if (formModulo) formModulo.classList.add("hidden");
+		      if (formRicevuta) formRicevuta.classList.remove("hidden");
+		    });
+		  }
+
+		  // 3. GESTIONE DEL CLICK SUL PULSANTE "TORNA AL FORM"
+		  if (btnAnnulla) {
+		    btnAnnulla.addEventListener("click", function () {
+		      // CAMBIO VISIBILITÀ: Nasconde la ricevuta e mostra di nuovo il modulo
+		      if (formRicevuta) formRicevuta.classList.add("hidden");
+		      if (formModulo) formModulo.classList.remove("hidden");
+		      
+		      // Svuota il primo modulo in automatico per un nuovo inserimento pulito
+		      if (formModulo) formModulo.reset();
+		    });
+		  }
+		});
 		
 		
 	</script>
